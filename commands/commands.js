@@ -1,25 +1,33 @@
 const { RichEmbed } = require('discord.js');
+const { prefix } = require('../config.json');
 
-const commands = function(msg){
-
-    const text = 
-    
-   `All available commands:
-   
-    **!commands** - Display commands list;
-    **!task list** - List all future tasks;
-    **!task list all** - List all tasks (past and future);
-    **!task add** - Prompt user for details and add a new task;
-    **!task delete** - Prompt user for task ID, and delete it;
-    **!task change** - Prompt user for details to change a task;`;
-
+module.exports = {
+  name: 'commands',
+  description: 'List all commands',
+  args: false,
+  usage: {
+    "commands": `${prefix}commands`
+  },
+  execute(args, msg){
 
     const embed = new RichEmbed()
-      .setTitle('!commands')
-      .setColor(0xFF0000)
-      .setDescription(text);
+      .setTitle('IBN 5100')
+      .setThumbnail(msg.client.user.avatarURL)
+      .setColor('#4286f4')
+      .addField('!commands', 'Display commands list;')
+      .addField('!help <command>', 'Display info about the specified command;')
+      .addField('!task list', 'List open tasks;')
+      .addField('!task list due <days>', 'List open tasks with due date over next <days>;')
+      .addField('!task list course <course_name>', 'List all tasks for the specific course;')
+      .addField('!task list all', 'List all tasks (open and done);')
+      .addField('!task add <title>;<course>;<due_date>', 'Add a new task;')
+      .addField('!task complete <id>', 'Set your ID completed for the specific task;')
+      .addField('!task open <id>', 'Unset your ID completed for the specific task')
+      .setFooter('el psy congroo', msg.client.user.avatarURL)
+      .setTimestamp();
+    
+    console.log(msg.client.user.avatarURL);
 
     msg.channel.send(embed);
 }
-
-module.exports = commands;
+};
