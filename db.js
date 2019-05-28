@@ -1,8 +1,8 @@
-var mongoosedb = require('mongoose');
-require('dotenv').config();
+const mongoose = require('mongoose');
+const { db } = require('./config.json');
 
-mongoosedb.Promise = global.Promise;
-mongoosedb.connect(process.env.DB, {useNewUrlParser: true}, (err) => {
+mongoose.Promise = global.Promise;
+mongoose.connect(db, {useNewUrlParser: true, useFindAndModify: false}, (err) => {
   if(err){
     console.log(err);
   } else {
@@ -10,4 +10,4 @@ mongoosedb.connect(process.env.DB, {useNewUrlParser: true}, (err) => {
   }
 });
 
-module.exports = mongoosedb;
+module.exports = mongoose;
