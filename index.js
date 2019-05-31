@@ -8,16 +8,20 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-
+// LOAD AND INITIALIZE ALL COMMANDS
 commandFiles.forEach(file => {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
+    const Class = require(`./commands/${file}`);
+    const object = new Class();
+    client.commands.set(object.name, object);
+    console.log(client.commands);
 });
 
 // ON INIT
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-    client.user.setActivity('I, Robot', {type: 'WATCHING'});
+    client.user.setActivity('Kevin Mladek', {type: 'WATCHING'});
+
+    console.log(commandFiles);
 
 });
 
@@ -52,7 +56,7 @@ client.on('message', msg => {
     }
 
     try {
-        command.execute(args, msg);
+        command.run(args, msg);
     } catch (err) {
         console.log(err);
     }
