@@ -11,7 +11,7 @@ module.exports = {
     execute(args, msg) {
         const { commands } = msg.client;
 
-        const commandName = args.shift();       
+        const commandName = args.shift();      
 
         if(!commands.has(commandName)) {
             return msg.channel.send("Invalid command, to view all available commands use !commands");
@@ -31,7 +31,7 @@ module.exports = {
             embed.addField(`**${e}**`, command.usage[e]);
         });
 
-        msg.channel.send(embed);   
+        msg.channel.send(embed); 
 
     }
 }

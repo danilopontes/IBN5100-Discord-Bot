@@ -8,6 +8,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
+
 commandFiles.forEach(file => {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
@@ -17,6 +18,7 @@ commandFiles.forEach(file => {
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('I, Robot', {type: 'WATCHING'});
+
 });
 
 
