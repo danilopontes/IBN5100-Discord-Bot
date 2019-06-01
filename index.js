@@ -1,8 +1,10 @@
-require('./db');
 const fs = require('fs');
 const { prefix, token } = require('./config.json');
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+// CONNECT TO DB
+require('./db');
 
 // MAP ALL COMMANDS
 client.commands = new Discord.Collection();

@@ -1,6 +1,6 @@
 const TaskModel = require('../models/Task');
-const { prefix } = require('../config.json');
 const Command = require('./Command');
+const { prefix } = require('../config.json');
 
 class Task extends Command {
     constructor(){
