@@ -9,6 +9,7 @@
   "author": "Danilo Pontes",
   "license": "ISC",
   "dependencies": {
+    "cron": "^1.7.1",
     "discord.js": "^11.5.0",
     "mongoose": "^5.5.11"
   }

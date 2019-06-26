@@ -9,5 +9,3 @@ mongoose.connect(db, {useNewUrlParser: true, useFindAndModify: false}, (err) => 
     console.log("DB connected!");
   }
 });
-
-module.exports = mongoose;
