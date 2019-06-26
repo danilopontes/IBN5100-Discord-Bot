@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var taskSchema = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -15,9 +15,10 @@ var taskSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    completed: [{
+    guildID: {
         type: String,
-    }]
+        required: true
+    }
 }, {collection: 'task'});
 
 module.exports = mongoose.model('Task', taskSchema);

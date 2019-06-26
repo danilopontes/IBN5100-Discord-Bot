@@ -1,5 +1,5 @@
-const { RichEmbed } = require('discord.js');
-const { prefix } = require('../config.json');
+const {	RichEmbed } = require('discord.js');
+const {	prefix } = require('../config.json');
 const Command = require('./Command');
 
 /**
@@ -7,35 +7,38 @@ const Command = require('./Command');
  * This command display a list of all available commands.
  */
 class Commands extends Command {
-    constructor() {
-        super('commands', 'Display a list of available commands.', false, {
-            "commands": `${prefix}commands`
-        })
-    };
+	constructor(client) {
+		super(client, 'commands', 'Display a list of available commands.', {
+			"commands": `${prefix}commands`
+		})
+	};
 
+	/**
+	 * Method to be run when the command is called.
+	 * @param {string[]} args The array of arguments specified by the user through the command 
+	 * @param {Message} msg The message object of referred to the message sent 
+	 */
+	run(args, msg) {
 
-    run(args, msg) {
+		const embed = new RichEmbed()
+			.setTitle('IBN 5100')
+			.setThumbnail(msg.client.user.avatarURL)
+			.setColor('#4286f4')
+			.setFooter('el psy congroo', msg.client.user.avatarURL)
+			.setTimestamp();
 
-        const embed = new RichEmbed()
-        .setTitle('IBN 5100')
-        .setThumbnail(msg.client.user.avatarURL)
-        .setColor('#4286f4')
-        .setFooter('el psy congroo', msg.client.user.avatarURL)
-        .setTimestamp();
+		const dash = '-';
+		msg.client.commands.forEach(command => {
+			embed.addField(`${dash.repeat(80)}`, `**Command:** ${prefix + command.name}`);
 
-        const dash = '-';
-        msg.client.commands.forEach(command => {
-            embed
-            .addField(`${dash.repeat(80)}`, `**Command:** ${prefix + command._name}`);
+			Object.keys(command.usage).forEach(item => {
+				embed.addField(item, command.usage[item]);
+			});
 
-            Object.keys(command._usage).forEach(item => {
-                embed.addField(item, command._usage[item]);
-            });
+		});
 
-        });
-  
-      msg.channel.send(embed);
-    }
+		msg.channel.send(embed);
+	}
 
 }
 

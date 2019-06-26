@@ -1,11 +1,14 @@
+const { prefix } = require('../config.json');
 /**
  * Command object, superclass of all commands
  */
 class Command {
-    constructor(name, description, args, usage){
+    constructor(client, name, description, usage){
+
+        this.ERROR_MESSAGE = `Error: Invalid arguments, for more information use ${prefix}help ${name}`;
+        this._client = client;
         this._name = name;
         this._description = description;
-        this._args = args;
         this._usage = usage;
     }
 
@@ -16,29 +19,6 @@ class Command {
      */
     run(args, msg) {
         throw new Error("Method not implemented");
-    }
-
-    /**
-     * Checks if the command called has valid arguments.
-     * @param {Array} args The array of arguments specified by the user through the command 
-     */
-    validArgs(args) {
-        if(this._args && !args.length){
-            let reply = `[Error]: You didn't provide valid arguments.\n`;
-
-            if(this._usage) {
-    
-                reply += 'Follow bellow the proper way to use this command:\n\n'
-    
-                Object.keys(this._usage).forEach(e => {
-                    reply += `**${e}** - ${this._usage[e]}\n`;
-                });
-            }
-    
-            throw new Error(reply);
-        }
-
-        return true;
     }
 
     /**
@@ -62,6 +42,9 @@ class Command {
         return this._args;
     }
 
+    /**
+     * @returns {Object} The key value pairs with the command usage information
+     */
     get usage(){
         return this._usage;
     }

@@ -6,27 +6,26 @@ const client = new Discord.Client();
 // CONNECT TO DB
 require('./db');
 
-// MAP ALL COMMANDS
-client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js') && file != 'Command.js');
-
-// LOAD AND INITIALIZE ALL COMMANDS
-commandFiles.forEach(file => {
-    const Class = require(`./commands/${file}`);
-    const object = new Class();
-    client.commands.set(object.name, object);
-});
-
 // ON INIT
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     client.user.setActivity('I, Robot', {type: 'WATCHING'});
+
+
+    // MAP AND LOAD ALL COMMANDS
+    client.commands = new Discord.Collection();
+    const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js') && file != 'Command.js');
+   
+    commandFiles.forEach(file => {
+        const Class = require(`./commands/${file}`);
+        const object = new Class(client);
+        client.commands.set(object.name, object);
+    });
 });
 
-
-// LISTEN TO MESSAGE
+// MESSAGE LISTENER
 client.on('message', msg => {
-
+    
     if(msg.author.bot || !msg.content.startsWith(prefix) || msg.channel.type == 'dm') return;
 
     const args = msg.content.slice(prefix.length).split(/ +/);
