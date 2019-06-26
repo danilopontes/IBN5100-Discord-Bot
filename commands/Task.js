@@ -17,11 +17,10 @@ class Task extends Command {
 			"task list all": `${prefix}task list all`,
 			"task list course": `${prefix}task list course <Course>`,
 			"task list due": `${prefix}task list due <number_of_days>`,
-			"task complete": `${prefix}task complete <task_id>`,
-			"task open": `${prefix}task open <task_id>`,
 			"task delete": `${prefix}task delete <task_id>`,
 			"task reminders add": `${prefix}task reminders add <channel_name>;<number_of_days>;<pattern>`,
-			"task reminders list": `${prefix}task reminders list` 
+			"task reminders list": `${prefix}task reminders list`,
+			"task reminders delete": `${prefix}task reminders delete <Reminder_ID>` 
 		});
 
 		/**
