@@ -1,7 +1,7 @@
 <h1 align="center">IBN 5100 - Discord Bot</h1>
 
 <p align="center">
-  A discord with cool and useful commands to help users.
+  A discord bot with cool and useful commands to help users.
 </p>
 
 ## Available Commands:
@@ -22,21 +22,21 @@
 ```
 !task add Assignment 4;Java OOP;09/22/2020
 ```
-<hr><br>
+<hr>
 
 ### Listing all due tasks:
 ```
 !task list 
 ```
-<hr><br>
+<hr>
 
 ### Listing all tasks (Due and Overdue Tasks):
 ```
 !task list all 
 ```
-<hr><br>
+<hr>
 
-### Listing all tasks due by specific amount of date:
+### Listing all tasks due by specific amount of days:
 ```
 !task list due <Amount_Of_Days> 
 ```
@@ -44,7 +44,7 @@
 ```
 !task list due 10 
 ```
-<hr><br>
+<hr>
 
 ### Listing all tasks due for a specific Course:
 ```
@@ -54,7 +54,7 @@
 ```
 !task list course Java OOP
 ```
-<hr><br>
+<hr>
 
 ## Deleting a Task:
 ```
