@@ -21,9 +21,7 @@ class Help extends Command {
 	 */
 	run(args, msg) {
 
-		const {
-			commands
-		} = msg.client;
+		const { commands } = msg.client;
 
 		const commandName = args.shift();
 
