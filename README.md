@@ -13,6 +13,9 @@
 ## !task command:
 
 <p>This command is focused to helping students to keep track of their assignments and exams.</p>
+<p align="center">
+  <img src="https://github.com/danilotp/IBN5100-Discord-Bot/blob/master/content/list-task.JPG?raw=true">
+</p>
 
 ### Adding a new Task:
 ```
