@@ -1,0 +1,5 @@
+{
+    "prefix": "!",
+    "token": "xcmnM10PEGFebrn2JzYCatMd5wAxA0gWuLCn0zmV",
+    "db": "mongodb://<dbuser>:<dbpassword>@ds1234567.mlab.com:54321/ibn5100"
+}
