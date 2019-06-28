@@ -64,3 +64,47 @@
 ```
 !task delete xcf36d49d108725c4c1f1545 
 ```
+
+## Setting up automated reminders for Tasks:
+
+<p>It is possible to set automated reminders for the tasks that are due using Cron patterns.</p>
+<p>Future implementation of this feature will be more user friendly without the need to know Cron patterns.</p>
+
+```
+ Cron Pattern:
+ ┌────────────── seconds (optional): 0-59
+ │ ┌──────────── minutes: 0-59
+ │ │ ┌────────── hours: 0-23
+ │ │ │ ┌──────── day of month: 1-31
+ │ │ │ │ ┌────── months: 0-11 (Jan-Dec)
+ │ │ │ │ │ ┌──── day of week: 0-6 (Sun-Sat)
+ │ │ │ │ │ │
+ │ │ │ │ │ │
+ * * * * * *
+```
+
+### Adding a new Reminder:
+```
+!task reminders add <Channel_Name>;<Due_next_X_Days>;<Cron_Pattern>
+```
+#### Example of usage:
+```
+!task reminders add reminders;7;0 0 12 * * 1
+```
+
+In this case, we are adding a new reminder where the message will be sent to a channel called reminders.
+It will show all tasks that are due during the next 7 days, and the Cron pattern is set to every Monday at 12:00 PM.
+
+<hr>
+
+### Listing existing reminders:
+```
+!task reminders list
+```
+
+<hr>
+
+### Deleting an existing Reminder:
+```
+!task reminders delete <Reminder_ID>
+```
