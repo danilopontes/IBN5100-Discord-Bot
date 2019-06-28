@@ -115,3 +115,8 @@ It will show all tasks that are due during the next 7 days, and the Cron pattern
 ```
 !task reminders delete xcf36d49d108725c4c1f1545 
 ```
+
+## Author
+
+| [<img src="https://avatars3.githubusercontent.com/u/7239233?v=3&s=115"><br><sub>@danilotp</sub>](https://github.com/danilotp) |
+| :---: |
