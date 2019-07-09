@@ -1,43 +1,26 @@
-const fs = require('fs');
-const {	prefix,	token } = require('./config.json');
+const { prefix, token } = require('./config.json');
+const Database  = require('./db');
+const commandsLoader = require('./util/commandsLoader');
+const commandSelector = require('./util/commandSelector');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
-// CONNECT TO DB
-require('./db');
 
 // ON INIT
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
-	client.user.setActivity('I, Robot', {
-		type: 'WATCHING'
-	});
+	client.user.setActivity('I, Robot', { type: 'WATCHING' });
 
-
-	// MAP AND LOAD ALL COMMANDS
-	client.commands = new Discord.Collection();
-	const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js') && file != 'Command.js');
-
-	commandFiles.forEach(file => {
-		const Class = require(`./commands/${file}`);
-		const object = new Class(client);
-		client.commands.set(object.name, object);
-	});
+	Database.connect();
+	commandsLoader.load(client);
 });
 
 // MESSAGE LISTENER
 client.on('message', msg => {
 
-	if (msg.author.bot || !msg.content.startsWith(prefix) || msg.channel.type == 'dm') return;
+	if(!commandSelector.checkIfMessageIsValidCommand(msg, client)) return;
 
-	const args = msg.content.slice(prefix.length).split(/ +/);
-	const commandName = args.shift().toLowerCase();
-
-	if (!client.commands.has(commandName)) {
-		return msg.channel.send('This command does not exist, for information about all available commands, use !commands');
-	}
-
-	const command = client.commands.get(commandName);
+  const args = msg.content.slice(prefix.length).split(/ +/).slice(1);
+	const command = commandSelector.select(msg, client);
 
 	try {
 		command.run(args, msg);
@@ -48,3 +31,5 @@ client.on('message', msg => {
 
 // CONNECT BOT
 client.login(token);
+
+module.exports = { client };
