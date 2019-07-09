@@ -1,9 +1,10 @@
 const {	prefix } = require('../config.json');
+const { client } = require('../index');
 /**
  * Command object, superclass of all commands
  */
 class Command {
-	constructor(client, name, description, usage) {
+	constructor(name, description, usage) {
 
 		this.ERROR_MESSAGE = `Error: Invalid arguments, for more information use ${prefix}help ${name}`;
 		this._client = client;
