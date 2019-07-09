@@ -2,7 +2,6 @@ const { prefix } = require('../config.json');
 const {	RichEmbed } = require('discord.js');
 const Command = require('./Command');
 
-
 /**
  * Help command
  * This command allows the user to get more information about a specific command.
@@ -22,7 +21,6 @@ class Help extends Command {
 	run(args, msg) {
 
 		const { commands } = msg.client;
-
 		const commandName = args.shift();
 
 		if (!commands.has(commandName)) {
