@@ -7,8 +7,8 @@ const Command = require('./Command');
  * This command display a list of all available commands.
  */
 class Commands extends Command {
-	constructor(client) {
-		super(client, 'commands', 'Display a list of available commands.', {
+	constructor() {
+		super('commands', 'Display a list of available commands.', {
 			"commands": `${prefix}commands`
 		})
 	};

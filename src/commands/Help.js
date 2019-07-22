@@ -7,8 +7,8 @@ const Command = require('./Command');
  * This command allows the user to get more information about a specific command.
  */
 class Help extends Command {
-	constructor(client) {
-		super(client, 'help', 'Display information about the specified command', {
+	constructor() {
+		super('help', 'Display information about the specified command', {
 			"help": `${prefix}help <command>`
 		});
 	}

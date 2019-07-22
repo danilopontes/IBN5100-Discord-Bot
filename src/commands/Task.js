@@ -17,7 +17,6 @@ class Task extends ITask {
 		this._taskAdder = new TaskAdder();
 		this._taskDeleter = new TaskDeleter();
 		this._taskReminders = new TaskReminders(this._taskLister);
-
 	}
 	/**
 	 * Method to be run when the command is called.
