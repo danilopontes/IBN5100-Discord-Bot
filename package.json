@@ -11,6 +11,6 @@
   "dependencies": {
     "cron": "^1.7.1",
     "discord.js": "^11.5.1",
-    "mongoose": "^5.6.4"
+    "mongoose": "^5.7.5"
   }
 }
